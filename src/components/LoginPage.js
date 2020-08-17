@@ -76,7 +76,7 @@ export class LoginPage extends React.Component {
 
                             <AccountCircle/>
 
-                            <TextField id="input-username" label="Username" value={this.state.username}
+                            <TextField id="input-username" label="Email" value={this.state.username}
                                        onChange={this.handleUsernameChange}/>
 
                         </div>

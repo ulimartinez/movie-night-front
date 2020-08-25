@@ -56,6 +56,9 @@ export class MovieCard extends React.Component{
                     >
                         Vote
                     </Button>
+                    <Typography color="textSecondary" gutterBottom>
+                        Votes: {this.props.movie.movie.votes}
+                    </Typography>
                 </CardActions>
             </Card>
         );

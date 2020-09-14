@@ -168,6 +168,7 @@ function * voteMovie(api, action){
         let response = yield call(api.voteMovie, action);
         if(response && response.ok){
             yield put(MovieActions.vote_success(response.data));
+            yield put(MovieActions.get_movies_request({"id":action.data.groupId, "user": {"token": action.data.token}}));
         }
         else {
             console.log("vote movie not ok?");
@@ -210,9 +211,6 @@ function * getNights(api, action){
     try {
         let response = yield call(api.getNights, action);
         if(response && response.ok){
-            console.log("response of get nights");
-            console.log(response);
-
             yield put(NightsActions.get_nights_success({nights: response.data}));
         }
         else {
@@ -257,6 +255,7 @@ function * assignMovie(api, action){
         let response = yield call(api.assignMovie, action);
         if(response && response.ok){
             yield put(NightsActions.assign_movie_success(response.data));
+	    yield put(NightsActions.get_nights_request({id: action.data.groupId, user: {token: action.data.token}}));
         }
         else {
             console.log("assign movie not ok?");
@@ -267,6 +266,22 @@ function * assignMovie(api, action){
     }
 }
 
+function * setHistory(api, action){
+	try{
+		let response = yield call(api.setHistory, action);
+		if(response && response.ok){
+			yield put(NightsActions.set_history_success(response.data));
+	        	yield put(NightsActions.get_nights_request({id: action.data.groupId, user: {token: action.data.token}}));
+		}
+		else {
+			console.log("set history not ok?");
+			console.log(response);
+		}
+	} catch(e) {
+		yield put(NightsActions.set_history_failure(e.toString()));
+	}
+}
+
 /* ------------- Connect Types To Sagas ------------- */
 export default function * root () {
     yield all([
@@ -274,6 +289,7 @@ export default function * root () {
         takeLatest(NightsTypes.GET_HISTORY_REQUEST, getHistory, api),
         takeEvery(NightsTypes.ADD_NIGHT_REQUEST, addNight, api),
         takeLatest(NightsTypes.ASSIGN_MOVIE_REQUEST, assignMovie, api),
+	takeLatest(NightsTypes.SET_HISTORY_REQUEST, setHistory, api),
         takeEvery(MovieTypes.GET_MOVIES_REQUEST, getMovies, api),
         takeEvery(MovieTypes.ADD_MOVIE_REQUEST, addMovie, api),
         takeLatest(MovieTypes.VOTE_REQUEST, voteMovie, api),

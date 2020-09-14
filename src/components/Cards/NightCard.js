@@ -32,6 +32,9 @@ export class NightCard extends React.Component{
     handleAssign = () => {
        this.props.selectMovie({groupId: this.props.group.id, nightId: this.props.night.id, token: this.props.user.token})
     }
+    handleWatched = () => {
+	    this.props.setWatched({groupId: this.props.group.id, nightId: this.props.night.id, token: this.props.user.token})
+    }
     render() {
         const {classes} = this.props;
         /*const movie = (<CardMedia
@@ -66,6 +69,12 @@ export class NightCard extends React.Component{
                     >
                         Select Movie
                     </Button>
+                    <Button
+                        size="small"
+                        onClick={this.handleWatched}
+                    >
+                       Mark Watched 
+                    </Button>
                 </CardActions>
             </Card>
         );
@@ -75,6 +84,7 @@ export class NightCard extends React.Component{
 
 const mapDispatchToProps = (dispatch)=>({
     selectMovie: (data)=> dispatch(NightsActions.assign_movie_request(data)),
+    setWatched: (data)=> dispatch(NightsActions.set_history_request(data))
 })
 
 export default connect(undefined, mapDispatchToProps)(withStyles(styles)(NightCard));

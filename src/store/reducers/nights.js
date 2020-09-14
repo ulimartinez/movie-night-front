@@ -27,6 +27,9 @@ export const {
     assign_movie_request: ['data'],
     assign_movie_success: ['payload'],
     assign_movie_failure: ['payload'],
+    set_history_request: ['data'],
+    set_history_success: ['payload'],
+    set_history_failure: ['payload']
 });
 
 export default createReducer(INITIAL_STATE, {
@@ -43,4 +46,7 @@ export default createReducer(INITIAL_STATE, {
     [Types.ASSIGN_MOVIE_REQUEST]: nightsRequest,
     [Types.ASSIGN_MOVIE_SUCCESS]: nightsSuccess,
     [Types.ASSIGN_MOVIE_FAILURE]: fatalFailure,
+    [Types.SET_HISTORY_REQUEST]: nightsRequest,
+    [Types.SET_HISTORY_SUCCESS]: nightsSuccess,
+    [Types.SET_HISTORY_FAILURE]: fatalFailure,
 });

@@ -72,6 +72,10 @@ const createAPI = (baseURL) => {
     const assignMovie = async(data) => {
         return await api.post("/nights/set/" + data.data.groupId + "/" + data.data.nightId, null, {headers: {"Authorization": data.data.token}});
     }
+    const setHistory = async(data) => {
+	    return await api.post("/nights/history/" + data.data.nightId, null, {headers: {'Authorization': data.data.token}});
+    }
+
     return {
         getNights,
         getHistory,
@@ -86,7 +90,8 @@ const createAPI = (baseURL) => {
         getMembers,
         addMovie,
         voteMovie,
-        getMovies
+        getMovies,
+	setHistory
     };
 };
 

@@ -37,7 +37,7 @@ class MoviesPage extends React.Component {
         const movies_cards = [];
         if(this.props.movies){
             for(let i = 0; i < this.props.movies.length; i++){
-                movies_cards.push(<MovieCard movie={{movie:this.props.movies[i]}} user={this.props.user} key={i} />);
+                movies_cards.push(<MovieCard movie={{movie:this.props.movies[i]}} user={this.props.user} group={this.props.group} key={i} />);
             }
         }
         return (

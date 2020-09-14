@@ -30,7 +30,7 @@ export class MovieCard extends React.Component{
         this.handleVote = this.handleVote.bind(this);
     }
     handleVote = () => {
-       this.props.voteMovie({movieId: this.props.movie.movie.id, token: this.props.user.token})
+       this.props.voteMovie({groupId: this.props.group.id, movieId: this.props.movie.movie.id, token: this.props.user.token})
     }
     render() {
         const {classes} = this.props;

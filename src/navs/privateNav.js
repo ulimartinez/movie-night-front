@@ -9,6 +9,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import MovieIcon from '@material-ui/icons/Movie';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import GroupIcon from '@material-ui/icons/Group';
+import LinkIcon from '@material-ui/icons/Link';
 
 /* import your desired icon from material-ui icons library */
 import {NavLink} from 'react-router-dom';
@@ -34,7 +35,12 @@ export const publicNavs = [
         url:'/groups',
         name:'Groups',
         icon:<GroupIcon/>
-    }
+    },
+	{
+		url:'/discord',
+		name:'Discord',
+		icon:<LinkIcon/>
+	}
 ];
 
 

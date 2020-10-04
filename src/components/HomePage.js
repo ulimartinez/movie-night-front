@@ -1,3 +1,4 @@
+const DiscordOauth2 = require('discord-oauth2');
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +19,10 @@ import {Creators as groupsActions} from "../store/reducers/groups"
 
 class HomePage extends React.Component {
     componentDidMount() {
+	    if(false){
+	    const oauth = new DiscordOauth2();
+	    }
+	    console.log(this.props);
         this.props.fetchGroups(this.props.user);
     }
 

@@ -47,3 +47,24 @@ export const loginSuccess = (state, action) => {
         ...payload
     };
 };
+export const discordRequest = (state, action) => {
+	return {
+		...state,
+		fetching: true,
+		success: false,
+		payload: undefined,
+		connected: false
+	}
+}
+export const discordSuccess = (state, action) => {
+	const {
+		payload
+	} = action;
+	return {
+		...state,
+		fetching: false,
+		success: true,
+		error: false,
+		connected: true
+	}
+}

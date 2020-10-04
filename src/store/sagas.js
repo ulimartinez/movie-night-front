@@ -68,6 +68,20 @@ function * register(api, action){
     }
 }
 
+function * discord(api, action){
+	try{
+		let response = yield call(api.discord, action);
+		if(response && response.ok){
+			yield put(AuthActions.discord_success(response.data));
+		} else {
+			console.log("discord adding not successful");
+			console.log(response);
+		}
+	} catch (e) {
+		yield put(AuthActions.discord_failure(e.toString()));
+	}
+}
+
 /*--------------------- groups sagas --------------------*/
 
 function * getGroups(api, action){
@@ -299,6 +313,7 @@ export default function * root () {
         takeEvery(GroupsTypes.ADD_REQUEST, createGroup, api),
         takeEvery(GroupsTypes.GET_MEMBERS_REQUEST, getMembers, api),
         takeLatest(GroupsTypes.SET_GROUPS_REQUEST, setGroup, api),
-        takeLatest(GroupsTypes.JOIN_GROUP_REQUEST, joinGroup, api)
+        takeLatest(GroupsTypes.JOIN_GROUP_REQUEST, joinGroup, api),
+	takeLatest(AuthTypes.DISCORD_REQUEST, discord, api)
     ]);
 }

@@ -1,3 +1,4 @@
+require('error-polyfill');
 import React from 'react';
 import {render} from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';

@@ -41,6 +41,13 @@ const createAPI = (baseURL) => {
         form.append('username', data.data.username);
         return await api.post("/users/", form, {headers: {'content-type': 'application/json'}});
     }
+
+	const discord = async(data) => {
+		const form = new FormData();
+		form.append('userid', data.data.userid);
+		form.append('token', data.data.token);
+		return await api.post("/users/discord/", form, {headers: {'content-type': 'application/json'}});
+	}
     //movies routes
     const addMovie = async(data) => {
         let form = new FormData();
@@ -91,7 +98,8 @@ const createAPI = (baseURL) => {
         addMovie,
         voteMovie,
         getMovies,
-	setHistory
+	setHistory,
+	discord
     };
 };
 

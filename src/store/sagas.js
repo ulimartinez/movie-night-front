@@ -46,7 +46,12 @@ function * login(api, action){
         }
         else {
             console.log("login not ok?");
-            console.log(response);
+		if(response.data.errors){
+			if("Email" in response.data.errors || "Password" in response.data.errors){
+				yield put(AuthActions.auth_failure({"errors": {"login": "invalid email or password"}}));
+			}
+		}
+		yield put(AuthActions.auth_failure(response.data));
         }
     } catch (e) {
         yield put(AuthActions.auth_failure(e.toString()));

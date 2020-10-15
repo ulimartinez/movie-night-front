@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {Types as authTypes, Creators as authActions} from '../store/reducers/auth';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -14,6 +16,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Key from '@material-ui/icons/VpnKey';
 import Button from '@material-ui/core/Button';
 import withStyles from "@material-ui/core/styles/withStyles";
+import Snackbar from '@material-ui/core/Snackbar';
 
 const styles = (theme) => {
     return {
@@ -29,7 +32,16 @@ export class LoginPage extends React.Component {
         this.state = {username: '', password: ''};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+	    this.handleSnackClose = this.handleSnackClose.bind(this);
     }
+
+	handleSnackClose(event, reason){
+		if(reason === "clickaway"){
+			console.log("clicked away");
+			return;
+		}
+		this.props.dismissSnack();
+	}
 
     handleUsernameChange(event) {
         this.setState({...this.state, username: event.target.value});
@@ -100,19 +112,41 @@ export class LoginPage extends React.Component {
                         Register
                     </Typography></Link>
                 </Paper>
+		<Snackbar
+			anchorOrigin={{
+				vertical: 'bottom',
+				horizontal: 'left',
+			}}
+			open={this.props.error || this.props.snack}
+			autoHideDuration={6000}
+			onClose={this.handleSnackClose}
+			message={this.props.snack || this.props.errorMessage.login || 'error'}
+			action={
+				<React.Fragment>
+					<IconButton size="small" aria-label="close" color="inherit" onClick={this.handleSnackClose}>
+						<CloseIcon fontSize="small" />
+					</IconButton>
+				</React.Fragment>
+			}
+		/>
+
             </div>
         );
     }
 }
 const mapStateToProps = state => ({
     connected: state.auth.connected,
-    loading: state.auth.fetching
+    loading: state.auth.fetching,
+	snack: state.auth.snack,
+	error: state.auth.error,
+	errorMessage: state.auth.errors? state.auth.errors : ''
 });
 
 
 
 const mapDispatchToProps = (dispatch)=>({
-  startLogin: (user)=> dispatch(authActions.auth_request(user))
+  startLogin: (user)=> dispatch(authActions.auth_request(user)),
+	dismissSnack: () => dispatch(authActions.dismiss_snack())
 });
 
 

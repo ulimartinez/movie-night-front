@@ -1,6 +1,7 @@
 import { createActions, createReducer } from 'reduxsauce';
 import * as Immutable from 'seamless-immutable';
 import { fatalFailure, logout, loginRequest, loginSuccess, discordRequest, discordSuccess } from '../handlers/auth';
+import { dismissSnack } from '../handlers/snack';
 
 
 export const INITIAL_STATE = {
@@ -25,7 +26,8 @@ export const {
 	discord_request: ['data'],
 	discord_success: ['payload'],
 	discord_failure: ['payload'],
-    logout: undefined
+    logout: undefined,
+	dismiss_snack: undefined,
 });
 
 export default createReducer(INITIAL_STATE, {
@@ -39,5 +41,6 @@ export default createReducer(INITIAL_STATE, {
 	[Types.DISCORD_SUCCESS]: discordSuccess,
 	[Types.DISCORD_REQUEST]: discordRequest,
 	[Types.DISCORD_FAILURE]: fatalFailure,
-    [Types.LOGOUT]: logout
+    [Types.LOGOUT]: logout,
+	[Types.DISMISS_SNACK]: dismissSnack,
 });

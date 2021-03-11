@@ -16,6 +16,7 @@ import ProductsPage from '../components/ProductsPage';
 import FormsPage from '../components/FormsPage';
 import MoviesPage from "../components/MoviesPage";
 import NightsPage from "../components/NightsPage";
+import HistoryPage from "../components/HistoryPage";
 import RegisterPage from "../components/RegisterPage";
 import DiscordPage from "../components/DiscordPage";
 import GroupsPage from "../components/GroupsPage";
@@ -36,6 +37,7 @@ const AppRouter = () => (
           <PrivateRoute path="/nights" component={NightsPage} />
           <PrivateRoute path="/groups" component={GroupsPage} />
           <PrivateRoute path="/discord" component={DiscordPage} />
+	  <PrivateRoute path="/history" component={HistoryPage} />
        
         <Route path="/login" component={LoginPage}  />
 

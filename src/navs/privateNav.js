@@ -27,6 +27,11 @@ export const publicNavs = [
         icon:<MovieIcon/>
     },
     {
+	    url:'/history',
+	    name:'History',
+	    icon:<MovieIcon/>
+    },
+    {
         url:'/nights',
         name:'Nights',
         icon:<Brightness3Icon/>

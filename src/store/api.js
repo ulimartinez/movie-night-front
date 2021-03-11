@@ -68,7 +68,7 @@ const createAPI = (baseURL) => {
         return await api.get("/nights/list/" + data.data.id, null, {headers:{"Authorization": data.data.user.token}});
     }
     const getHistory = async(data) => {
-        return await api.get("/nights/history/" + data.data.groupId, null, {headers:{"Authorization": data.data.token}});
+        return await api.get("/nights/history/" + data.data.id, null, {headers:{"Authorization": data.data.user.token}});
     }
     const addNight = async(data) => {
         let form = new FormData();

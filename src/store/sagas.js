@@ -259,7 +259,7 @@ function * getHistory(api, action){
     try {
         let response = yield call(api.getHistory, action);
         if(response && response.ok){
-            yield put(NightsActions.get_history_success(response.data));
+            yield put(NightsActions.get_history_success({history:response.data}));
         }
         else {
             console.log("get history not ok?");

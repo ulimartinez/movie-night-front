@@ -28,7 +28,7 @@
     "file-loader": "^1.1.11",
     "fusioncharts": "^3.12.2",
     "material-ui-image": "^3.0.0",
-    "moment": "^2.25.0",
+    "moment": "^2.29.4",
     "mysql": "^2.18.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
